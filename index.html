@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelTales - Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="styles/main.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100" style="background-image: url('images/ig.jpg'); background-size: cover; background-position: center;">
+
+    <!-- Header with Navigation Bar and Centered Title -->
+    <header class="bg-gray-800 py-4 fixed w-full top-0 left-0 z-50">
+        <div class="container mx-auto flex items-center justify-between px-6">
+            <!-- Hamburger Icon for Mobile (Left Corner) -->
+            <button class="text-white md:hidden absolute left-6 top-1/2 transform -translate-y-1/2" id="hamburger" onclick="toggleHamburger()">
+                <span class="block w-6 h-0.5 bg-white mb-1"></span>
+                <span class="block w-6 h-0.5 bg-white mb-1"></span>
+                <span class="block w-6 h-0.5 bg-white"></span>
+            </button>
+
+            <!-- Centered Title -->
+            <h1 class="text-3xl font-extrabold text-white tracking-widest hover:scale-110 hover:text-amber-400 transition-transform">
+                TravelTales
+            </h1>
+
+            <!-- Navigation Bar -->
+            <nav class="flex items-center space-x-6 hidden md:flex">
+                <ul class="flex space-x-6 text-white text-lg">
+                    <li><a href="index.html" class="hover:text-amber-400">Home</a></li>
+                    <li><a href="about.html" class="hover:text-amber-400">About</a></li>
+                    <li><a href="services.html" class="hover:text-amber-400">Services</a></li>
+                    <li><a href="contact.html" class="hover:text-amber-400">Contact</a></li>
+                    <li><button onclick="openModal('signinModal')" class="hover:text-amber-400">Sign In</button></li>
+                    <li><button onclick="openModal('signupModal')" class="hover:text-amber-400">Sign Up</button></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="hidden md:hidden absolute top-16 left-0 right-0 bg-gray-800 py-4 px-6">
+            <ul class="space-y-4 text-white text-lg">
+                <li><a href="index.html" class="hover:text-amber-400">Home</a></li>
+                <li><a href="about.html" class="hover:text-amber-400">About</a></li>
+                <li><a href="services.html" class="hover:text-amber-400">Services</a></li>
+                <li><a href="contact.html" class="hover:text-amber-400">Contact</a></li>
+                <li><button onclick="openModal('signinModal')" class="hover:text-amber-400">Sign In</button></li>
+                <li><button onclick="openModal('signupModal')" class="hover:text-amber-400">Sign Up</button></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="mt-[84px] text-center">
+        <section class="bg-cover bg-center text-white py-40" style="background-image: url('images/hero.jpg');">
+            <h1 class="text-5xl font-semibold mb-6 sm:text-4xl">Explore the World with Us</h1>
+            <p class="text-xl max-w-2xl mx-auto mb-6 sm:text-lg">Your dream destination awaits. Start planning today!</p>
+            <button class="bg-amber-400 hover:bg-amber-500 text-white py-3 px-6 rounded-full text-lg sm:px-4 sm:py-2" onclick="openTripModal()">
+                Plan Your Trip
+            </button>
+        </section>
+    </main>
+
+    <!-- Trip Modal -->
+    <div id="tripModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-96 relative">
+            <button onclick="closeModal('tripModal')" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+            <h2 class="text-2xl font-bold mb-4">Plan Your Trip</h2>
+            <label class="block text-gray-700">Select Trip Type:</label>
+            <select id="tripType" class="w-full p-2 border rounded mb-4">
+                <option value="flight">Flight</option>
+                <option value="hotel">Hotel</option>
+                <option value="package">Holiday Package</option>
+            </select>
+            <label class="block text-gray-700">Starting Location:</label>
+            <input type="text" id="startLocation" class="w-full p-2 border rounded mb-3" placeholder="Enter starting location">
+            <label class="block text-gray-700">Ending Location:</label>
+            <input type="text" id="endLocation" class="w-full p-2 border rounded mb-3" placeholder="Enter ending location">
+            <label class="block text-gray-700">Number of Days:</label>
+            <input type="number" id="days" class="w-full p-2 border rounded mb-3" placeholder="Enter number of days">
+            <div id="priceEstimation" class="hidden">
+                <p class="text-gray-700">Estimated Price: <span id="estimatedPrice" class="font-bold text-lg">$0</span></p>
+            </div>
+            <button onclick="getPriceEstimation()" class="bg-green-500 text-white py-2 px-4 rounded-full w-full">Get Estimated Price</button>
+        </div>
+    </div>
+
+    <!-- Sign In Modal -->
+    <div id="signinModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-96 relative">
+            <button onclick="closeModal('signinModal')" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+            <h2 class="text-2xl font-bold mb-4">Sign In</h2>
+            <form>
+                <label class="block text-gray-700">Email:</label>
+                <input type="email" class="w-full p-2 border rounded mb-3" placeholder="Enter your email">
+                <label class="block text-gray-700">Password:</label>
+                <input type="password" class="w-full p-2 border rounded mb-3" placeholder="Enter your password">
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded w-full">Sign In</button>
+            </form>
+            <p class="mt-3 text-gray-700">Don't have an account? <span onclick="showSignupModal()" class="text-amber-400 cursor-pointer">Sign Up</span></p>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div id="signupModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-96 relative">
+            <button onclick="closeModal('signupModal')" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+            <h2 class="text-2xl font-bold mb-4">Sign Up</h2>
+            <form>
+                <label class="block text-gray-700">Full Name:</label>
+                <input type="text" class="w-full p-2 border rounded mb-3" placeholder="Enter your name">
+                <label class="block text-gray-700">Email:</label>
+                <input type="email" class="w-full p-2 border rounded mb-3" placeholder="Enter your email">
+                <label class="block text-gray-700">Password:</label>
+                <input type="password" class="w-full p-2 border rounded mb-3" placeholder="Create a password">
+                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded w-full">Sign Up</button>
+            </form>
+            <p class="mt-3 text-gray-700">Already have an account? <span onclick="showSigninModal()" class="text-amber-400 cursor-pointer">Sign In</span></p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center py-4 mt-20">
+        <p>&copy; 2025 TravelTales. All rights reserved.</p>
+    </footer>
+
+    <!-- Link to External JavaScript File -->
+    <script>
+        // Function to open modal
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+        }
+
+        // Function to close modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+
+        // Show trip modal when clicking "Plan Your Trip"
+        function openTripModal() {
+            openModal('tripModal');
+        }
+
+        // Show sign up modal
+        function showSignupModal() {
+            closeModal('signinModal');
+            openModal('signupModal');
+        }
+
+        // Show sign in modal
+        function showSigninModal() {
+            closeModal('signupModal');
+            openModal('signinModal');
+        }
+
+        // Calculate Estimated Price
+        function getPriceEstimation() {
+            var tripType = document.getElementById('tripType').value;
+            var startLocation = document.getElementById('startLocation').value;
+            var endLocation = document.getElementById('endLocation').value;
+            var days = document.getElementById('days').value;
+
+            if (!startLocation || !endLocation || !days) {
+                alert("Please fill all the fields.");
+                return;
+            }
+
+            var price = 0;
+
+            if (tripType === 'flight') {
+                price = days * 100;
+            } else if (tripType === 'hotel') {
+                price = days * 80;
+            } else if (tripType === 'package') {
+                price = days * 150;
+            }
+
+            document.getElementById('estimatedPrice').textContent = `$${price}`;
+            document.getElementById('priceEstimation').classList.remove('hidden');
+        }
+
+        // Hamburger toggle function
+        function toggleHamburger() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }
+    </script>
+</body>
+
+</html>

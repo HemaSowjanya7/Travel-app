@@ -1,0 +1,23 @@
+/travel-landing-page
+    /public
+        /images
+            hero.jpg (place your own image here)
+        /fonts (place your optimized fonts here)
+    /src
+        /components
+            Navbar.js
+            Hero.js
+            ServiceList.js
+            Footer.js
+        /pages
+            Home.js
+            AboutUs.js
+            Services.js
+            Contact.js
+            SignIn.js
+            SignUp.js
+    /styles
+        main.css
+    index.html
+    package.json
+    tailwind.config.js
