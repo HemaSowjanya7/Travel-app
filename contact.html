@@ -10,20 +10,39 @@
 
 <body class="bg-gray-100 flex flex-col min-h-screen" style="background-image: url('images/li.jpg'); background-size: cover; background-position: center;">
 
-  <!-- Header with Navigation -->
-  <header class="bg-gray-800 text-white py-4 fixed w-full top-0 left-0 z-50 shadow-md">
-    <div class="container mx-auto flex justify-between items-center px-6">
-      <h1 class="text-xl font-bold">TravelTales</h1>
-      <nav>
-        <ul class="flex space-x-6">
-          <li><a href="index.html" class="hover:text-amber-400">Home</a></li>
-          <li><a href="about.html" class="hover:text-amber-400">About Us</a></li>
-          <li><a href="services.html" class="hover:text-amber-400">Services</a></li>
-          <li><a href="contact.html" class="text-amber-400 font-semibold">Contact</a></li>
-        </ul>
-      </nav>
+  <header class="bg-gray-800 py-4 fixed w-full top-0 left-0 z-50">
+    <div class="container mx-auto flex justify-between items-center px-6 relative">
+        <!-- Hamburger Icon for Mobile -->
+        <button class="text-white md:hidden absolute left-6 top-1/2 transform -translate-y-1/2" id="hamburger" onclick="toggleHamburger()">
+            <span class="block w-6 h-0.5 bg-white mb-1"></span>
+            <span class="block w-6 h-0.5 bg-white mb-1"></span>
+            <span class="block w-6 h-0.5 bg-white"></span>
+        </button>
+
+        <nav>
+            <ul class="flex space-x-6 text-white text-lg hidden md:flex">
+                <li><a href="index.html" class="hover:text-amber-400">Home</a></li>
+                <li><a href="about.html" class="hover:text-amber-400">About</a></li>
+                <li><a href="services.html" class="hover:text-amber-400">Services</a></li>
+                <li><a href="contact.html" class="hover:text-amber-400">Contact</a></li>
+            </ul>
+        </nav>
+
+        <h1 class="text-3xl font-extrabold text-white tracking-widest hover:scale-110 hover:text-amber-400 transition-transform">
+            TravelTales
+        </h1>
     </div>
-  </header>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobileMenu" class="hidden md:hidden absolute top-16 left-0 right-0 bg-gray-800 py-4 px-6">
+        <ul class="space-y-4 text-white text-lg">
+            <li><a href="index.html" class="hover:text-amber-400">Home</a></li>
+            <li><a href="about.html" class="hover:text-amber-400">About</a></li>
+            <li><a href="services.html" class="hover:text-amber-400">Services</a></li>
+            <li><a href="contact.html" class="hover:text-amber-400">Contact</a></li>
+        </ul>
+    </div>
+</header>
 
   <!-- Main Content -->
   <main class="mt-24 flex justify-center">
@@ -62,8 +81,15 @@
     <p>&copy; 2025 Travel Website. All rights reserved.</p>
   </footer>
 
-  <!-- Link to External JavaScript File -->
-  <script src="script.js"></script>
+  <!-- JavaScript for Modal Functionality -->
+  <script>
+    // Function to toggle mobile menu visibility
+    function toggleHamburger() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      mobileMenu.classList.toggle('hidden');
+    }
+  </script>
 
 </body>
+
 </html>
